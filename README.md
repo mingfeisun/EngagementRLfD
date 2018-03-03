@@ -3,14 +3,15 @@
 
 ## Schedule
 
-1. kinect body pose; (Dell tablet) done.
-2. facial landmarks; (Open face) 
-3. engagement modeling; (Function/reward define)
-4. state/reward/action definition; (Action design)
-5. mdp model; 
-6. robot storytelling;
-7. user study;
+*Matlab version*
+1. Particle filter pose estimation
+2. KL divergence calculation
+3. Information gain test
+4. Kinect pose dataset experiment
+*ROS*
+5. ROS version particle filter & KL divergence calculation
+6. User study
 
 ## Implementations
 
-1. [Particle filter](https://www.mathworks.com/help/robotics/ug/particle-filter-parameters.html)
+1. [Particle filter](https://www.mathworks.com/help/robotics/ug/particle-filter-parameters.html) (Matlab testing)
