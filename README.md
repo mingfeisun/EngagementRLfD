@@ -16,3 +16,4 @@
 
 1. [Particle filter](https://www.mathworks.com/help/robotics/ug/particle-filter-parameters.html) (Matlab testing)
 2. [Matlab Robotics System Toolbox](https://www.mathworks.com/help/robotics/index.html)
+3. [Matlab ROS Custom Message Support](https://www.mathworks.com/help/robotics/ug/ros-custom-message-support.html)
