@@ -18,3 +18,4 @@
 2. [Matlab Robotics System Toolbox](https://www.mathworks.com/help/robotics/index.html)
 3. [Matlab ROS Custom Message Support](https://www.mathworks.com/help/robotics/ug/ros-custom-message-support.html)
 4. [Pepper ROS tutorials](http://wiki.ros.org/pepper/Tutorials)
+5. [Make an animated model (actor)](http://gazebosim.org/tutorials?tut=actor&cat=build_robo)
