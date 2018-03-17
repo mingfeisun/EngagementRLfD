@@ -20,3 +20,4 @@
 4. [Pepper ROS tutorials](http://wiki.ros.org/pepper/Tutorials)
 5. [Make an animated model (actor)](http://gazebosim.org/tutorials?tut=actor&cat=build_robo)
 6. Step by Step Skeletal Animation in C++ and OpenGL, Using COLLADA [step 1](http://www.wazim.com/Collada_Tutorial_1.htm) & [step 2](http://www.wazim.com/Collada_Tutorial_2.htm)
+7. [Matlab class properties passed by value](https://www.mathworks.com/matlabcentral/answers/183246-updating-property-of-an-object-without-creating-new-object)
