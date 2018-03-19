@@ -22,3 +22,4 @@
 6. Step by Step Skeletal Animation in C++ and OpenGL, Using COLLADA [step 1](http://www.wazim.com/Collada_Tutorial_1.htm) & [step 2](http://www.wazim.com/Collada_Tutorial_2.htm)
 7. [Matlab class properties passed by value](https://www.mathworks.com/matlabcentral/answers/183246-updating-property-of-an-object-without-creating-new-object)
 8. [Matlab ros tr manipulation](https://www.mathworks.com/help/robotics/examples/access-the-tf-transformation-tree-in-ros.html)
+9. [Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html#coordinate-frames)
