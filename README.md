@@ -24,3 +24,4 @@
 8. [Matlab ros tr manipulation](https://www.mathworks.com/help/robotics/examples/access-the-tf-transformation-tree-in-ros.html)
 9. [Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html#coordinate-frames)
 10. [Actor mesh references](http://visionismtech.com/index.php/2016/12/08/gpu-accelerated-human-actor-in-gazebo-simulation/)
+11. [Gzweb](http://gazebosim.org/gzweb.html#install-collapse-1)
