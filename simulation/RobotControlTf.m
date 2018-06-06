@@ -128,7 +128,7 @@ classdef RobotControlTf < handle
             obj.attention.generateAttentionMap(actorPose);
             
             [headYaw, headPitch] = obj.attention.getAttentionPoint();
-            robot.TurnHead(headYaw, headPitch);
+            obj.TurnHead(headYaw, headPitch);
             
             if obj.vis_mode
                 obj.attention.showAttentionMap();
