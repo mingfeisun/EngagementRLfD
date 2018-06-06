@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="" default=""/>
+    <param name="use_gui" value="true"/>
+
+    <include file="$(find pepper_gazebo_plugin)/launch/pepper_gazebo_plugin_Y20.launch"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-f base_footprint -d $(find main)config/urdf.rviz"/>
+
+</launch>
