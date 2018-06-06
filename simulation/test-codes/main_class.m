@@ -29,4 +29,3 @@ while simulationIndex <= T
     
     simulationIndex = simulationIndex + 1;
 end
-Untitled

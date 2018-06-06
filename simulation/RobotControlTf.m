@@ -1,5 +1,7 @@
 classdef RobotControlTf < handle
     properties
+        vis_mode;
+        
         actorFrameP;
         actorFrameC;
         
@@ -19,10 +21,17 @@ classdef RobotControlTf < handle
         
         tfTree;
         msgType;
+        
+        attention;
+        linkPose;
+        h;
+        PFilter;
     end
     
     methods
         function obj = RobotControlTf()
+            obj.vis_mode = false;
+            
             obj.tfTree = rostf;
 
             obj.actorFrameP = {'actor_LeftShoulder', 'actor_LeftArm', 'actor_RightShoulder', 'actor_RightArm'};
@@ -65,6 +74,15 @@ classdef RobotControlTf < handle
             for i=1:length(headStr)
                 obj.headPub = [obj.headPub; rospublisher(headStr{i}, obj.msgType)];
             end
+            
+            obj.attention = AttentionMap();
+            obj.h=axes;
+            obj.PFilter = 0;
+            obj.linkPose = GazeboLinkPose();
+        end
+        
+        function Init(obj)
+            obj.linkPose.Init();
         end
         
         function [headYaw, headPitch] = GetHeadCspace(obj, pt)
@@ -98,7 +116,29 @@ classdef RobotControlTf < handle
             send(obj.headPub(2), msg);
         end
         
-        function BehaveLike(obj)
+        function AttentionEngage(obj)
+            [~, actorPose, flag] = obj.linkPose.Update();
+            if ~flag
+                pause(0.01);
+                return;
+            end
+
+            [posePred, obj.PFilter, ~] = obj.attention.StartTracking(actorPose);
+
+            obj.attention.generateAttentionMap(actorPose);
+            
+            [headYaw, headPitch] = obj.attention.getAttentionPoint();
+            robot.TurnHead(headYaw, headPitch);
+            
+            if obj.vis_mode
+                obj.attention.showAttentionMap();
+                cla;
+                skel_vis(actorPose, 1, obj.PFilter, obj.h, 'true');
+                skel_vis(posePred, 1, obj.PFilter, obj.h, 'pred');
+            end
+        end
+        
+        function MimicEngage(obj)
             waitForTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
             tform_new = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
             tform_rot = tform_new.Transform.Rotation;
