@@ -224,7 +224,7 @@
                 <filename>moonwalk.dae</filename>
             </skin>
             <animation name="striking">
-              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/sport/0.bvh</filename>
+              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/sport/1.bvh</filename>
               <!--
               <filename>/home/mingfei/Documents/Engagement/src/main/worlds/126_14.bvh</filename>
               <interpolate_x>true</interpolate_x>

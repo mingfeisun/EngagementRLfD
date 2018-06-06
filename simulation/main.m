@@ -1,5 +1,4 @@
 clear;
-rosinit;
 
 h=axes;
 PFilter = 0;
@@ -16,8 +15,8 @@ while 1
         continue;
     end
     
-    % lookPt = linkPose.getJointPt('actor::RightHand');
-    % robot.LookAt(lookPt);
+    lookPt = linkPose.getJointPt('actor::RightHand');
+    robot.LookAt(lookPt);
     
     [posePred, PFilter, dominanceLevel] = attention.StartTracking(actorPose);
     
@@ -33,8 +32,7 @@ while 1
 
     keyJointsPos = linkPose.getKeyJoints();
     angleConfigs = mimic.generateConfigs(keyJointsPos);
-    robot.BehaveLike(angleConfigs);
+    robot.BehaveLike();
     
 end
-rosshutdown;
     
