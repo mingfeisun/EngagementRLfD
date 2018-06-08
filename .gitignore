@@ -5,6 +5,7 @@ devel/
 kinect-data/
 misc/
 videos/
+videos-1/
 web/
 
 .catkin_workspace

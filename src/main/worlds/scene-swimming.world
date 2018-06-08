@@ -1,0 +1,244 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.6">
+    <world name="learning">
+        <gui>
+            <camera name="staging_camera">
+                <pose>3.6 0 2 0 0.2618 3.14</pose>
+            </camera>
+        </gui>
+
+        <light name="sun" type="directional">
+            <cast_shadows>1</cast_shadows>
+            <pose>0 0 10 0 -0 0 </pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>0 0.5 -0.9</direction>
+        </light>
+
+        <light name="point_light" type="point">
+            <cast_shadows>0</cast_shadows>
+            <pose>0 -0.377195 6.59868 0 -0 0 </pose>
+            <diffuse>0.784314 0.784314 0.784314 1</diffuse>
+            <specular>0.0980392 0.0980392 0.0980392 1</specular>
+            <attenuation>
+                <range>50</range>
+                <constant>0.8</constant>
+                <linear>0</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>0 0 -1</direction>
+        </light>
+
+        <model name='ground_plane'>
+            <static>1</static>
+            <link name='link'>
+                <collision name='collision'>
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>18.4 7.4</size>
+                    </plane>
+                </geometry>
+                <surface>
+                    <friction>
+                    <ode>
+                        <mu>100</mu>
+                        <mu2>50</mu2>
+                    </ode>
+                    </friction>
+                    <bounce/>
+                    <contact>
+                    <ode/>
+                    </contact>
+                </surface>
+                <max_contacts>10</max_contacts>
+                </collision>
+                <visual name='visual'>
+                <cast_shadows>0</cast_shadows>
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>18.4 7.4</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/Grey</name>
+                    </script>
+                </material>
+                </visual>
+                <velocity_decay>
+                <linear>0</linear>
+                <angular>0</angular>
+                </velocity_decay>
+                <self_collide>0</self_collide>
+                <kinematic>0</kinematic>
+                <gravity>1</gravity>
+            </link>
+        </model>
+
+        <model name='RoboCup 14 SPL Field'>
+            <static>1</static>
+            <link name='field'>
+                <pose>0 0 0.01 0 -0 0</pose>
+                <collision name='collision'>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>10.4 7.4</size>
+                        </plane>
+                    </geometry>
+                    <surface>
+                        <friction>
+                        <ode>
+                            <mu>100</mu>
+                            <mu2>50</mu2>
+                        </ode>
+                        </friction>
+                        <bounce/>
+                        <contact>
+                        <ode/>
+                        </contact>
+                    </surface>
+                    <max_contacts>10</max_contacts>
+                </collision>
+                <visual name='carpet'>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>10.4 7.4</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>model://robocup09_spl_field/materials/scripts/</uri>
+                        <uri>model://robocup09_spl_field/materials/textures/</uri>
+                        <name>RoboCup/Carpet</name>
+                        </script>
+                    </material>
+                </visual>
+                <visual name='sideline_1'>
+                    <pose>0 3 0.011 0 -0 0</pose>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>9.05 0.05</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                        </script>
+                    </material>
+                </visual>
+                <visual name='sideline_2'>
+                    <pose>0 -3 0.011 0 -0 0</pose>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>9.05 0.05</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                        </script>
+                    </material>
+                </visual>
+                <visual name='endline_1'>
+                    <pose>-4.5 0 0.011 0 -0 0</pose>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>0.05 6.05</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                        </script>
+                    </material>
+                </visual>
+                <visual name='endline_2'>
+                    <pose>4.5 0 0.011 0 -0 0</pose>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>0.05 6.05</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                        </script>
+                    </material>
+                </visual>
+                <visual name='halfway_line'>
+                    <pose>0 0 0.011 0 -0 0</pose>
+                    <cast_shadows>0</cast_shadows>
+                    <geometry>
+                        <plane>
+                        <normal>0 0 1</normal>
+                        <size>0.05 6.05</size>
+                        </plane>
+                    </geometry>
+                    <material>
+                        <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                        </script>
+                    </material>
+                </visual>
+
+                <velocity_decay>
+                <linear>0</linear>
+                <angular>0</angular>
+                </velocity_decay>
+                <self_collide>0</self_collide>
+                <kinematic>0</kinematic>
+                <gravity>1</gravity>
+            </link>
+            <pose>-4 0 0 0 -0 0</pose>
+        </model>
+
+        <actor name="actor">
+            <pose>0 1.07 1.15 0 0 -1.57</pose>
+            <skin>
+                <filename>moonwalk.dae</filename>
+            </skin>
+            <animation name="striking">
+              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/new_sport/79_02.bvh</filename>
+            </animation>
+            <script>
+                <delay_start>2.0</delay_start>
+                <trajectory id="0" type="striking">
+                    <waypoint>
+                        <time>0</time>
+                        <pose>1.2 1.03 0 0 -0.8 0</pose>
+                    </waypoint>
+                    <waypoint>
+                        <time>100</time>
+                        <pose>1.2 1.03 0 0 -0.8 0</pose>
+                    </waypoint>
+                </trajectory>
+            </script>
+        </actor>
+    </world>
+</sdf>

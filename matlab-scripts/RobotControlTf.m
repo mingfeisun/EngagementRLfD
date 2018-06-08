@@ -156,7 +156,7 @@ classdef RobotControlTf < handle
             send(obj.LEYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(3) + 1;
+            msg.Data = eul(3) + 0.5;
             send(obj.LSRPub, msg);
 
             waitForTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
@@ -188,11 +188,11 @@ classdef RobotControlTf < handle
             send(obj.RSPPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(2) + 1.7;
+            msg.Data = eul(2) + 1.5;
             send(obj.REYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(3) + 1;
+            msg.Data = -eul(3) - 0.5;
             send(obj.RSRPub, msg);
 
             waitForTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
