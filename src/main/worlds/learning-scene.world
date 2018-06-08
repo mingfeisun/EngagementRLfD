@@ -224,9 +224,9 @@
                 <filename>moonwalk.dae</filename>
             </skin>
             <animation name="striking">
-              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/sport/3.bvh</filename>
+              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/sport/1.bvh</filename>
               <!--
-              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/126_14.bvh</filename>
+              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/chacha.bvh</filename>
               <interpolate_x>true</interpolate_x>
               <scale>0.08</scale>
               <filename>walk.dae</filename>
@@ -237,11 +237,11 @@
                 <trajectory id="0" type="striking">
                     <waypoint>
                         <time>0</time>
-                        <pose>1.1 1.07 0 0 -3.0472 0</pose>
+                        <pose>1.2 1.07 -1.1 0 -0 0</pose>
                     </waypoint>
                     <waypoint>
-                        <time>10</time>
-                        <pose>1.2 1.07 0 0 -3.0472 0</pose>
+                        <time>3</time>
+                        <pose>1.2 1.07 0 0 -0 0</pose>
                     </waypoint>
                 </trajectory>
             </script>
