@@ -3,8 +3,13 @@ classdef RobotControlTf < handle
         vis_mode;
         delay_time;
         
+        clock_sub;
+        
         actorFrameP;
         actorFrameC;
+        
+        numAngle;
+        eulerAngles;
         
         headPub;
         
@@ -35,6 +40,11 @@ classdef RobotControlTf < handle
             obj.delay_time = 0.8;
             
             obj.tfTree = rostf;
+            
+            obj.numAngle = 50;
+            obj.eulerAngles = cell(obj.numAngle, 1);
+            
+            obj.clock_sub = rossubscriber('/clock');
 
             obj.actorFrameP = {'actor_LeftShoulder', 'actor_LeftArm', 'actor_RightShoulder', 'actor_RightArm'};
             obj.actorFrameC = {'actor_LeftArm', 'actor_LeftForeArm', 'actor_RightArm', 'actor_RightForeArm'};
@@ -78,7 +88,11 @@ classdef RobotControlTf < handle
             end
             
             obj.attention = AttentionMap();
-            obj.h=axes;
+            
+            if obj.vis_mode
+                obj.h=axes;
+            end
+            
             obj.PFilter = 0;
             obj.linkPose = GazeboLinkPose();
         end
@@ -141,104 +155,106 @@ classdef RobotControlTf < handle
         end
         
         function MimicEngage(obj)
-            % desiredTime = rostime('now') - 0.5;
+            % time_msg = receive(obj.clock_sub);
+            % desiredTime = time_msg.Clock_ - 3;
+            % sprintf("%d", obj.tfTree.BufferTime);
+            % desiredTime = rostime('now') - 1;
             
             % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Sec, desiredTime.Sec)
             % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Nsec, desiredTime.Nsec)
             
             waitForTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
-            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1}, desiredTime); 
+            % tform_new1 = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1}, desiredTime); 
             tform_new1 = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
             
             waitForTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
-            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2}, desiredTime);
-            
+            % tform_new2 = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2}, desiredTime);
             tform_new2 = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
             
 
             waitForTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
-            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3}, desiredTime);
+            % tform_new3 = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3}, desiredTime);
             tform_new3 = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
             
 
             waitForTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
-            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4}, desiredTime);          
+            % tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4}, desiredTime);          
             tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
             
-            % obj.SendAngles(tform_new1, tform_new2, tform_new3, tform_new4);
+            tform_rot = tform_new1.Transform.Rotation;
+            eul1 = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
             
-            t = timer;
-            t.StartDelay = obj.delay_time;
-            t.TimerFcn = @(myTimerObj, thisEvent)obj.SendAngles(tform_new1, tform_new2, tform_new3, tform_new4);
-            start(t);
+            tform_rot = tform_new2.Transform.Rotation;
+            eul2 = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
+            
+            tform_rot = tform_new3.Transform.Rotation;
+            eul3 = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
+            
+            tform_rot = tform_new4.Transform.Rotation;
+            eul4 = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
+            
+            firstEuler = obj.eulerAngles{1};
+            obj.eulerAngles = { obj.eulerAngles{2:obj.numAngle}, {eul1, eul2, eul3, eul4} };
+            
+            if ~isempty(firstEuler)
+                obj.SendAngles(firstEuler{1}, firstEuler{2}, firstEuler{3}, firstEuler{4});
+            end
         end
         
-        function SendAngles(obj, tform_new1, tform_new2, tform_new3, tform_new4)
-            tform_rot = tform_new1.Transform.Rotation;
-            eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
-
+        function SendAngles(obj, eul1, eul2, eul3, eul4)
             % eul_degree = eul*180/pi;
             % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = 0.2 + eul(1);
+            msg.Data = 0.2 + eul1(1);
             send(obj.LSPPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(2) - 1.5;
+            msg.Data = eul1(2) - 1.5;
             send(obj.LEYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(3) + 0.5;
+            msg.Data = eul1(3) + 0.5;
             send(obj.LSRPub, msg);
-            
-            
-            tform_rot = tform_new2.Transform.Rotation;
-            eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
+
 
             % eul_degree = eul*180/pi;
             % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul(2) - 0.5;
+            msg.Data = -eul2(2) - 0.5;
             send(obj.LWYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(3);
+            msg.Data = eul2(3);
             send(obj.LERPub, msg);
             
-            
-            tform_rot = tform_new3.Transform.Rotation;
-            eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
             % eul_degree = eul*180/pi;
             % display(eul_degree);
             
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul(1) - 0.2;
+            msg.Data = -eul3(1) - 0.2;
             send(obj.RSPPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul(2) + 1.5;
+            msg.Data = eul3(2) + 1.5;
             send(obj.REYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul(3) - 0.5;
+            msg.Data = -eul3(3) - 0.5;
             send(obj.RSRPub, msg);
             
-            
-            tform_rot = tform_new4.Transform.Rotation;
-            eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
             % eul_degree = eul*180/pi;
             % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul(2) - 0.5;
+            msg.Data = -eul4(2) - 0.5;
             send(obj.RWYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul(3);
+            msg.Data = -eul4(3);
             send(obj.RERPub, msg);
         end
     end

@@ -160,7 +160,7 @@
         <mu2>0.5</mu2>
         <selfCollide>false</selfCollide>
         <turnGravityOff>false</turnGravityOff>
-	
+	<material>Gazebo/Orange</material>
     </gazebo>
     <gazebo reference="LElbow">
         <mu1>0.5</mu1>
@@ -198,7 +198,7 @@
         <mu2>0.5</mu2>
         <selfCollide>false</selfCollide>
         <turnGravityOff>false</turnGravityOff>
-	
+	<material>Gazebo/Orange</material>
     </gazebo>
     <gazebo reference="RElbow">
         <mu1>0.5</mu1>
