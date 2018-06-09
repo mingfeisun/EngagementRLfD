@@ -1,6 +1,7 @@
 classdef RobotControlTf < handle
     properties
         vis_mode;
+        delay_time;
         
         actorFrameP;
         actorFrameC;
@@ -30,7 +31,8 @@ classdef RobotControlTf < handle
     
     methods
         function obj = RobotControlTf()
-            obj.vis_mode = true;
+            obj.vis_mode = false;
+            obj.delay_time = 0.8;
             
             obj.tfTree = rostf;
 
@@ -139,13 +141,44 @@ classdef RobotControlTf < handle
         end
         
         function MimicEngage(obj)
+            % desiredTime = rostime('now') - 0.5;
+            
+            % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Sec, desiredTime.Sec)
+            % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Nsec, desiredTime.Nsec)
+            
             waitForTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
-            tform_new = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
-            tform_rot = tform_new.Transform.Rotation;
+            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1}, desiredTime); 
+            tform_new1 = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
+            
+            waitForTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
+            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2}, desiredTime);
+            
+            tform_new2 = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
+            
+
+            waitForTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
+            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3}, desiredTime);
+            tform_new3 = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
+            
+
+            waitForTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
+            % tform_new = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4}, desiredTime);          
+            tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
+            
+            % obj.SendAngles(tform_new1, tform_new2, tform_new3, tform_new4);
+            
+            t = timer;
+            t.StartDelay = obj.delay_time;
+            t.TimerFcn = @(myTimerObj, thisEvent)obj.SendAngles(tform_new1, tform_new2, tform_new3, tform_new4);
+            start(t);
+        end
+        
+        function SendAngles(obj, tform_new1, tform_new2, tform_new3, tform_new4)
+            tform_rot = tform_new1.Transform.Rotation;
             eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
-        %     eul_degree = eul*180/pi;
-        %     display(eul_degree);
+            % eul_degree = eul*180/pi;
+            % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
             msg.Data = 0.2 + eul(1);
@@ -158,14 +191,13 @@ classdef RobotControlTf < handle
             msg = rosmessage('std_msgs/Float64');
             msg.Data = eul(3) + 0.5;
             send(obj.LSRPub, msg);
-
-            waitForTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
-            tform_new = getTransform(obj.tfTree, obj.actorFrameC{2}, obj.actorFrameP{2});
-            tform_rot = tform_new.Transform.Rotation;
+            
+            
+            tform_rot = tform_new2.Transform.Rotation;
             eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
-        %     eul_degree = eul*180/pi;
-        %     display(eul_degree);
+            % eul_degree = eul*180/pi;
+            % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
             msg.Data = -eul(2) - 0.5;
@@ -174,15 +206,14 @@ classdef RobotControlTf < handle
             msg = rosmessage('std_msgs/Float64');
             msg.Data = eul(3);
             send(obj.LERPub, msg);
-
-            waitForTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
-            tform_new = getTransform(obj.tfTree, obj.actorFrameC{3}, obj.actorFrameP{3});
-            tform_rot = tform_new.Transform.Rotation;
+            
+            
+            tform_rot = tform_new3.Transform.Rotation;
             eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
-        %     eul_degree = eul*180/pi;
-        %     display(eul_degree);
-
+            % eul_degree = eul*180/pi;
+            % display(eul_degree);
+            
             msg = rosmessage('std_msgs/Float64');
             msg.Data = -eul(1) - 0.2;
             send(obj.RSPPub, msg);
@@ -194,14 +225,13 @@ classdef RobotControlTf < handle
             msg = rosmessage('std_msgs/Float64');
             msg.Data = -eul(3) - 0.5;
             send(obj.RSRPub, msg);
-
-            waitForTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
-            tform_new = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
-            tform_rot = tform_new.Transform.Rotation;
+            
+            
+            tform_rot = tform_new4.Transform.Rotation;
             eul = quat2eul([tform_rot.W, tform_rot.X, tform_rot.Y, tform_rot.Z], 'ZYX');
 
-        %     eul_degree = eul*180/pi;
-        %     display(eul_degree);
+            % eul_degree = eul*180/pi;
+            % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
             msg.Data = -eul(2) - 0.5;
@@ -210,7 +240,6 @@ classdef RobotControlTf < handle
             msg = rosmessage('std_msgs/Float64');
             msg.Data = -eul(3);
             send(obj.RERPub, msg);
-
         end
     end
 end

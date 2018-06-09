@@ -222,23 +222,23 @@
         </model>
 
         <actor name="actor">
-            <pose>0 0.5 1.07 0 0 -2.50</pose>
+            <pose>0 0.5 1.07 0 0 -2.5</pose>
             <skin>
                 <filename>moonwalk.dae</filename>
             </skin>
             <animation name="striking">
-              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/new_sport/64_02.bvh</filename>
+              <filename>/home/mingfei/Documents/Engagement/src/main/worlds/new_sport/79_92.bvh</filename>
             </animation>
             <script>
                 <delay_start>10.0</delay_start>
                 <trajectory id="0" type="striking">
                     <waypoint>
                         <time>0</time>
-                        <pose>0.5 1.09 0 0 2.0 0</pose>
+                        <pose>0.5 1.03 0 0 -2.5 0</pose>
                     </waypoint>
                     <waypoint>
                         <time>100</time>
-                        <pose>0.5 1.09 0 0 2.0 0</pose>
+                        <pose>0.5 1.03 0 0 -2.5 0</pose>
                     </waypoint>
                 </trajectory>
             </script>
