@@ -133,7 +133,7 @@ classdef AttentionMap < handle
             meanError = mean(sum(abs(measurementError), 2));
             
             obj.noiseVar_prev(i_shift) = obj.noiseVar(i_shift);
-            obj.noiseVar(i_shift) = meanError/70;
+            obj.noiseVar(i_shift) = meanError/50;
             
 %             if meanError <= 0.2 && obj.noiseVar(i_shift) >= 0.001
 %                 obj.noiseVar(i_shift) = obj.noiseVar(i_shift)/2;

@@ -30,7 +30,7 @@ classdef RobotControlTf < handle
     
     methods
         function obj = RobotControlTf()
-            obj.vis_mode = false;
+            obj.vis_mode = true;
             
             obj.tfTree = rostf;
 
@@ -131,7 +131,7 @@ classdef RobotControlTf < handle
             obj.TurnHead(headYaw, headPitch);
             
             if obj.vis_mode
-                obj.attention.showAttentionMap();
+                % obj.attention.showAttentionMap();
                 cla;
                 skel_vis(actorPose, 1, obj.PFilter, obj.h, 'true');
                 skel_vis(posePred, 1, obj.PFilter, obj.h, 'pred');

@@ -2,6 +2,9 @@
 
 <sdf version="1.6">
     <world name="learning">
+        <physics type="ode">
+          <real_time_update_rate>200</real_time_update_rate>
+        </physics>
         <gui>
             <camera name="staging_camera">
                 <pose>3.6 0 2 0 0.2618 3.14</pose>
@@ -219,7 +222,7 @@
         </model>
 
         <actor name="actor">
-            <pose>0 1.07 1.15 0 0 -1.57</pose>
+            <pose>0 0.50 1.07 0 0 -2.50</pose>
             <skin>
                 <filename>moonwalk.dae</filename>
             </skin>
@@ -227,15 +230,15 @@
               <filename>/home/mingfei/Documents/Engagement/src/main/worlds/new_sport/79_08.bvh</filename>
             </animation>
             <script>
-                <delay_start>2.0</delay_start>
+                <delay_start>10.0</delay_start>
                 <trajectory id="0" type="striking">
                     <waypoint>
                         <time>0</time>
-                        <pose>1.2 1.03 0 0 -0.8472 0</pose>
+                        <pose>0.5 1.03 0 0 -2.5 0</pose>
                     </waypoint>
                     <waypoint>
                         <time>100</time>
-                        <pose>1.2 1.03 0 0 -0.8472 0</pose>
+                        <pose>0.5 1.03 0 0 -2.5 0</pose>
                     </waypoint>
                 </trajectory>
             </script>
