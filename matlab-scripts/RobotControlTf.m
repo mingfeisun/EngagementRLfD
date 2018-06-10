@@ -36,12 +36,12 @@ classdef RobotControlTf < handle
     
     methods
         function obj = RobotControlTf()
-            obj.vis_mode = false;
+            obj.vis_mode = true;
             obj.delay_time = 0.8;
             
             obj.tfTree = rostf;
             
-            obj.numAngle = 50;
+            obj.numAngle = 30;
             obj.eulerAngles = cell(obj.numAngle, 1);
             
             obj.clock_sub = rossubscriber('/clock');
@@ -155,14 +155,6 @@ classdef RobotControlTf < handle
         end
         
         function MimicEngage(obj)
-            % time_msg = receive(obj.clock_sub);
-            % desiredTime = time_msg.Clock_ - 3;
-            % sprintf("%d", obj.tfTree.BufferTime);
-            % desiredTime = rostime('now') - 1;
-            
-            % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Sec, desiredTime.Sec)
-            % sprintf('%d:%d', obj.tfTree.LastUpdateTime.Nsec, desiredTime.Nsec)
-            
             waitForTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
             % tform_new1 = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1}, desiredTime); 
             tform_new1 = getTransform(obj.tfTree, obj.actorFrameC{1}, obj.actorFrameP{1});
@@ -206,7 +198,8 @@ classdef RobotControlTf < handle
             % display(eul_degree);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = 0.2 + eul1(1);
+            msg.Data = eul1(1) - 0.5;
+            
             send(obj.LSPPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
@@ -214,7 +207,7 @@ classdef RobotControlTf < handle
             send(obj.LEYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = eul1(3) + 0.5;
+            msg.Data = - eul1(3) - 0.5;
             send(obj.LSRPub, msg);
 
 
@@ -234,7 +227,7 @@ classdef RobotControlTf < handle
             % display(eul_degree);
             
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul3(1) - 0.2;
+            msg.Data = -eul3(1) - 0.5;
             send(obj.RSPPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
@@ -242,7 +235,8 @@ classdef RobotControlTf < handle
             send(obj.REYPub, msg);
 
             msg = rosmessage('std_msgs/Float64');
-            msg.Data = -eul3(3) - 0.5;
+            
+            msg.Data = - eul3(3) - 0.5;
             send(obj.RSRPub, msg);
             
 
