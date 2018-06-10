@@ -6,6 +6,7 @@ kinect-data/
 misc/
 videos/
 videos-1/
+video-new/
 web/
 
 .catkin_workspace
