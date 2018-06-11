@@ -1,6 +1,5 @@
 classdef AttentionMap < handle
     properties
-        test;
         % Markov decision process
         state;
         reward;
