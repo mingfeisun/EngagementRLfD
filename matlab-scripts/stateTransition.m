@@ -1,6 +1,7 @@
 function predictParticles = stateTransition(pf, prevParticles, uCmd, noiseLevel)
 
 % Linear state transition
+test;
 stateTransitionModel = eye(pf.NumStateVariables);
 
 % Sample the Gaussian noise
