@@ -2,20 +2,24 @@
 
 ### RLfD
 * the definition of RLfD
-* RLfD was inspired by instructor-learning patterns. 
+* RLfD was inspired by instructor-learning patterns. algorithms 
 * In this paper, we also draw on the human learning patterns and design learning engagement for robots
 
 ### the learning engagement is important in instructor-learning paradigm. 
 * The definition of learning engagement
-* why the learning engagement is important
+* why the learning engagement is important: to guide the instructor; to influence the learning development
 
 ### in a interactive human learning, how human show learning engagement. attentions vs. mimics
-* attention
+* social interaction: attentional engagement
 * mimic: usually with some delay
 
 ### learning behaviors: attention and mimc; challenging
 * attention: automatically generate attention point; body pose based
 * mimic: mimic with robot behavior constraints; delay design
+
+### contribution of this work
+* attention --> instant attention
+* mimic --> approximately mimic with delay
 
 # Related work
 ### RLfD: 
