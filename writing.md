@@ -7,6 +7,8 @@
 
 ### the learning engagement is important in instructor-learning paradigm. 
 * The definition of learning engagement
+* to indicate the learners' internal status
+* to guide the instructor
 * why the learning engagement is important: to guide the instructor; to influence the learning development
 
 ### in a interactive human learning, how human show learning engagement. attentions vs. mimics
