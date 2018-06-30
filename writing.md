@@ -6,18 +6,14 @@
 * In this paper, we also draw on the human learning patterns and design learning engagement for robots
 
 ### the learning engagement is important in instructor-learning paradigm. 
-* The definition of learning engagement
+* The definition of learning engagement: two types of engagement behaviors (attention and imitation)
 * to indicate the learners' internal status
 * to guide the instructor
 * why the learning engagement is important: to guide the instructor; to influence the learning development
 
-### in a interactive human learning, how human show learning engagement. attentions vs. mimics
-* social interaction: attentional engagement
-* mimic: usually with some delay
-
-### learning behaviors: attention and mimc; challenging
-* attention: automatically generate attention point; body pose based
-* mimic: mimic with robot behavior constraints; delay design
+### a challenging problem
+* the attention design: rule-based; not related to body motions
+* the imitation design: physical constraints; delay effects
 
 ### contribution of this work
 * attention --> instant attention
