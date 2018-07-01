@@ -26,8 +26,10 @@
 * research gaps: the robot learning engagement
 
 ### Robot engagement
-* many ways: attention is the most important one; how to show attention and why it is insufficient
-* mimic: robot show mimic behaviors; 
+* the definition of engagement; 
+* how to show engagement: attention, imitation, others (spatial)
+* attention: how to generate attention; visual saliency, specifc objects, predefined events
+* mimic: robot show mimic behaviors; imitation with constraints, time delay
 
 # Methods
 ### Body poses
