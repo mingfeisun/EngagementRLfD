@@ -29,7 +29,7 @@
 * the definition of engagement; 
 * how to show engagement: attention, imitation, others (spatial)
 * attention: how to generate attention; visual saliency, specifc objects, predefined events
-* mimic: robot show mimic behaviors; imitation with constraints, time delay
+* imitation: two types of robot behaviors (imitation or emulation); imitation(mimicry in engagement), robot show mimic behaviors; emulation (show the same results), not the focus of this paper; imitation with constraints, time delay
 
 # Methods
 ### Body poses
