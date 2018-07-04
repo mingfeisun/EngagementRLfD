@@ -170,7 +170,7 @@ classdef RobotControlTf < handle
             
 
             waitForTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
-            % tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4}, desiredTime);          
+            % tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4}, desiredTime);
             tform_new4 = getTransform(obj.tfTree, obj.actorFrameC{4}, obj.actorFrameP{4});
             
             tform_rot = tform_new1.Transform.Rotation;

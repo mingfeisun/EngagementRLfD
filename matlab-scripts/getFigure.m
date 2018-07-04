@@ -16,4 +16,3 @@ for ti=1:T
 	pause(1/30);
 	cla;
 end
-

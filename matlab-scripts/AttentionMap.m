@@ -167,7 +167,7 @@ classdef AttentionMap < handle
         
         function likelihood = measurementLikelihood(obj, pf, predictParticles, measurement)
             predictMeasurement = predictParticles; 
-            measurementError = bsxfun(@minus, predictMeasurement, measurement);
+            measurementError = bsxfun(@minus, predictMeasurement, measurement);   
             measurementErrorNorm = sum(abs(measurementError), 2);
             measurementNoise = eye(pf.NumStateVariables);
             likelihood = 1/sqrt((2*pi).^3 * det(measurementNoise)) * exp(-2 * measurementErrorNorm);
