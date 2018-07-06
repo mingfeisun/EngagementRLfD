@@ -42,6 +42,11 @@
 * mocap data retargetting
 * sports type
 
+### System performances
+* attention generation results
+* robot imitation results
+* running time analysis
+
 ### Questions 
 * manipulations 
 * other questions
