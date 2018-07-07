@@ -38,9 +38,10 @@
 
 # Evaluation
 ### Simulation environment
-* pepper and actor
-* mocap data retargetting
-* sports type
+* the contents (pepper and actor), why simulation
+* overview of the simulation: two parts (demonstration control and robot behavior manipulation); 
+* sports and why
+* implementation details
 
 ### System performances
 * attention generation results
