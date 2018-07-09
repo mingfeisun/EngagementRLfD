@@ -43,17 +43,22 @@
 * sports and why
 * implementation details
 
-### System performances
+
+### User study results:
+* whether the proposed algorithms are effective? 
+* how people perceive the robot's behaviors
+
+~~### System performances
 * attention generation results + robot imitation results
 * how to evaluate the results: subjects' reported ratings, baseline: robot with none
-* ~~running time analysis, how to compare? baseline?~~
+* running time analysis, how to compare? baseline?~~
 
-### User study
+~~### User study
 * user study design
 * questions: engagement, master, acceptable, intelligence, demonstration
-* feedback: analysis
+* feedback: analysis~~
 
-### Discussion
+~~### Discussion
 * robot showing engagement is necessary
 * limitations:
-* some problems: distance between robot and human; the time delay
+* some problems: distance between robot and human; the time delay~~
