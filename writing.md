@@ -46,7 +46,7 @@
 ### System performances
 * attention generation results + robot imitation results
 * how to evaluate the results: subjects' reported ratings, baseline: robot with none
-* ~~running time analysis, how to compare? baseline?
+* ~~running time analysis, how to compare? baseline?~~
 
 ### User study
 * user study design
