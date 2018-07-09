@@ -44,19 +44,16 @@
 * implementation details
 
 ### System performances
-* attention generation results
-* robot imitation results
-* running time analysis
+* attention generation results + robot imitation results
+* how to evaluate the results: subjects' reported ratings, baseline: robot with none
+* ~~running time analysis, how to compare? baseline?
 
-### Questions 
-* manipulations 
-* other questions
+### User study
+* user study design
+* questions: engagement, master, acceptable, intelligence, demonstration
+* feedback: analysis
 
-### Pilot study results
+### Discussion
 * robot showing engagement is necessary
+* limitations:
 * some problems: distance between robot and human; the time delay
-
-### Second-round study
-* system performance
-* quantitively analysis
-* qualitively analysis
