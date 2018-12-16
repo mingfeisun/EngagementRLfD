@@ -28,6 +28,7 @@ if mode == 'pred'
         temp = PFilter(i).Particles;
         scatter3(temp(:, 1), temp(:, 2), temp(:, 3), 'r.');
     end
+    return;
 end
 
 
@@ -42,7 +43,7 @@ for ci=1:size(nui_skeleton_conn,1)
 		[xyz_ti(4*nui_skeleton_conn(ci,1)+3) ; ...
 		xyz_ti(4*nui_skeleton_conn(ci,2)+3)]);
 end
-cpos= [-0.6, -0.4, 1];
+cpos= [-1.1, -0.5, 0.8];
 
 set(h,'CameraPosition',cpos);
 set(h,'CameraTarget',skel(HIP_CENTER+1,1:3));
@@ -50,12 +51,18 @@ set(h,'CameraViewAngle',50);
 set(h,'CameraUpVector',[0 0 1]);
 set(h,'Projection','perspective');
 
-xmin=min(min(X(:,1:4:size(X,2))));
-ymin=min(min(X(:,2:4:size(X,2))));
-zmin=min(min(X(:,3:4:size(X,2))));
-xmax=max(max(X(:,1:4:size(X,2))));
-ymax=max(max(X(:,2:4:size(X,2))));
-zmax=max(max(X(:,3:4:size(X,2))));
+% xmin=min(min(X(:,1:4:size(X,2))));
+xmin = -0.8;
+% ymin=min(min(X(:,2:4:size(X,2))));
+ymin = 0;
+% zmin=min(min(X(:,3:4:size(X,2))));
+zmin = 0;
+% xmax=max(max(X(:,1:4:size(X,2))));
+xmax = 0.4;
+% ymax=max(max(X(:,2:4:size(X,2))));
+ymax = 0.9;
+% zmax=max(max(X(:,3:4:size(X,2))));
+zmax = 1.6;
 
 set(h,'XLim', [xmin, xmax]);
 set(h,'YLim', [ymin, ymax]);
