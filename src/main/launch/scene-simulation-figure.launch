@@ -8,7 +8,7 @@
   <arg name="debug" default="false"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find main)/worlds/scene-demo.world"/>
+    <arg name="world_name" value="$(find main)/worlds/scene-simulation-figure.world"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
@@ -21,6 +21,6 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-    args="-param robot_description -reference_frame ground_plane -urdf -x -1.1 -y -0.5 -z 0.8 -R 0 -P 0 -Y 0.5 -model pepper --verbose" />
+    args="-param robot_description -reference_frame ground_plane -urdf -x -0.0 -y -0.0 -z 0.8 -R 0 -P 0 -Y 1.3 -model pepper --verbose" />
 
 </launch>
