@@ -38,19 +38,29 @@
 
 # Evaluation
 ### Simulation environment
-* pepper and actor
-* mocap data retargetting
-* sports type
+* the contents (pepper and actor), why simulation
+* overview of the simulation: two parts (demonstration control and robot behavior manipulation); 
+* sports and why
+* implementation details
 
-### Questions 
-* manipulations 
-* other questions
+### User study results:
+* user study pipline
+* hypothesis
+* manipulation factor
+* whether the proposed algorithms are effective? 
+* how people perceive the robot's behaviors
 
-### Pilot study results
+### System performances
+* attention generation results + robot imitation results
+* how to evaluate the results: subjects' reported ratings, baseline: robot with none
+* running time analysis, how to compare? baseline?
+
+### User study
+* user study design
+* questions: engagement, master, acceptable, intelligence, demonstration
+* feedback: analysis
+
+### Discussion
 * robot showing engagement is necessary
+* limitations:
 * some problems: distance between robot and human; the time delay
-
-### Second-round study
-* system performance
-* quantitively analysis
-* qualitively analysis
